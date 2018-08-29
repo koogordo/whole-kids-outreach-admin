@@ -1,0 +1,23 @@
+.pos-selection {
+  width: 93% !important;
+}
+
+.new-pos-button {
+  margin-left: 5px;
+}
+
+.modal-dialog {
+  -webkit-box-shadow: 4px 16px 43px -17px rgba(0,0,0,0.59);
+-moz-box-shadow: 4px 16px 43px -17px rgba(0,0,0,0.59);
+box-shadow: 4px 16px 43px -17px rgba(0,0,0,0.59);
+
+}
+
+.num-of-pos {
+  width: 10% !important;
+  margin-bottom: 5px;
+}
+
+.new-pos-title {
+  width: 80% !important;
+}

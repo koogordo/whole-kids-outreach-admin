@@ -1,0 +1,75 @@
+<div class="container">
+    <div class="back-arrow-wrap mt-2">
+        <a mat-mini-fab class="mt-2" color="primary" routerLink="/staff/"><mat-icon>arrow_back</mat-icon></a>
+    </div>
+    <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12 mt-2" >
+        <mat-card>
+          <mat-card-title>
+            <h4>New Staff Member</h4>
+          </mat-card-title>
+          <mat-card-content>
+            <form #staffEditForm="ngForm" (ngSubmit)="submitEditStaff(staffEditForm)">
+              <mat-form-field class="full-width">
+                <mat-placeholder>First Name</mat-placeholder>
+                <input
+                  matInput
+                  type="text"
+                  name="fname"
+                  [(ngModel)]="fname"
+                  #newfname="ngModel"
+                  required
+                >
+              </mat-form-field>
+              <mat-form-field class="full-width">
+                  <mat-placeholder>Last Name</mat-placeholder>
+                  <input
+                    matInput
+                    type="text"
+                    name="lname"
+                    #newlname="ngModel"
+                    [(ngModel)]="lname"
+                    required
+                  >
+                </mat-form-field>
+
+                <mat-form-field class="full-width">
+                  <mat-placeholder>Suffix</mat-placeholder>
+                  <input
+                    matInput
+                    type="text"
+                    name="suffix"
+                    #newlname="ngModel"
+                    [(ngModel)]="suffix"
+                  >
+                </mat-form-field>
+
+                <mat-form-field class="full-width">
+                    <mat-placeholder>Position in Organization</mat-placeholder>
+                    <mat-select [(value)]="position">
+                    <mat-option *ngFor="let slot of staffSlots" value="{{slot}}">{{posOnStaff[slot]}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+
+                  <mat-form-field class="full-width">
+                      <mat-placeholder>Email</mat-placeholder>
+                      <input
+                        matInput
+                        type="email"
+                        name="staffEmail"
+                        #newoccupation="ngModel"
+                        [(ngModel)]="staffEmail"
+                        required
+                      >
+                    </mat-form-field>
+                    <div class="text-center">
+                      <button mat-raised-button type="submit" class="full-width">Submit Changes</button>
+                    </div>
+
+            </form>
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+</div>
+
+

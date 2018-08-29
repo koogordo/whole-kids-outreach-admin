@@ -1,0 +1,191 @@
+<mat-toolbar color="accent" class="page-header mat-elevation-z1">
+  <h3 class="header-title ml-3">Programs</h3>
+</mat-toolbar>
+<div class="container">
+
+<div class="row">
+  <div class="col-sm-12 col-xs-12 col-md-2 col-lg-2 mt-2">
+    <button mat-raised-button data-toggle="collapse" data-target="#collapseable">Add Program<mat-icon>add</mat-icon></button>
+  </div>
+  <div class="col-sm-12 col-xs-12 col-md-10 col-lg-10 mt-2" >
+      <div class="collapse" id="collapseable">
+      <mat-card>
+        <mat-card-title>
+          <h4>New Program</h4>
+        </mat-card-title>
+        <mat-card-content>
+          <form #programForm="ngForm" (ngSubmit)="confirmSubmission(programForm)">
+            <mat-form-field class="full-width">
+              <mat-placeholder>Title</mat-placeholder>
+              <input
+                matInput
+                type="text"
+                name="title"
+                [(ngModel)]="title"
+                #progtitle="ngModel"
+                required
+              >
+            </mat-form-field>
+            <mat-form-field class="full-width">
+              <mat-placeholder>Category</mat-placeholder>
+              <mat-select [(value)]="category">
+                <mat-option value="home">Home Visit</mat-option>
+                <mat-option value="centerKids">Center Based Kids</mat-option>
+                <mat-option value="centerFamily">Center Based Family</mat-option>
+              </mat-select>
+              </mat-form-field>
+              <mat-form-field class="full-width">
+                  <mat-placeholder>Tagline</mat-placeholder>
+                  <input
+                    matInput
+                    type="text"
+                    name="tagline"
+                    [(ngModel)]="tagline"
+                    #progtag="ngModel"
+                    required
+                  >
+                  </mat-form-field>
+
+                  <mat-form-field class="full-width">
+                    <mat-placeholder>When</mat-placeholder>
+                    <input
+                      matInput
+                      type="text"
+                      name="when"
+                      [(ngModel)]="when"
+                      #progwhen="ngModel"
+                      required
+                    >
+                    </mat-form-field>
+
+                    <mat-form-field class="full-width">
+                      <mat-placeholder>For Who?</mat-placeholder>
+                      <input
+                        matInput
+                        type="text"
+                        name="forwho"
+                        [(ngModel)]="forwho"
+                        #progforwho="ngModel"
+                        required
+                      >
+                      </mat-form-field>
+
+                      <mat-form-field class="full-width">
+                        <mat-placeholder>How To Register</mat-placeholder>
+                        <input
+                          matInput
+                          type="text"
+                          name="howtoreg"
+                          [(ngModel)]="howtoreg"
+                          #proghowtoreg="ngModel"
+                          required
+                        >
+                        </mat-form-field>
+              <mat-form-field class="full-width">
+                  <mat-placeholder>Program Info</mat-placeholder>
+                  <textarea
+                    matInput
+                    type="text"
+                    name="description"
+                    #progdescription="ngModel"
+                    [(ngModel)]="description"
+                    required
+                  ></textarea>
+                </mat-form-field>
+
+                <a mat-button (click)="selectFeaturedImg()">Select Featured Photo</a><br>
+                <div *ngIf="featuredImgSet" class="selected-image mt-2" [ngStyle]="{ 'background-image': 'url(' + featuredimg.url + ')' }">
+                    <mat-icon (click)="removeFeaturedImg()" class="remove-chosen-image">cancel</mat-icon>
+                  </div><br>
+
+                <a mat-button (click)="selectImages()">Select Carousel Photos</a><br><br>
+                <div *ngFor="let img of images" class="selected-image mt-2" [ngStyle]="{ 'background-image': 'url(' + img.url + ')' }">
+                  <mat-icon (click)="removeImg(img.$id)" class="remove-chosen-image">cancel</mat-icon>
+                </div><br>
+                <mat-slide-toggle [disabled]="featuredSet" name="featured" [(ngModel)]="featured">Featured</mat-slide-toggle>
+                <!-- <div *ngIf="featuredSet">
+                  <span >{{ featuredprog.title }} is currently set as featured. If you would like to change this click here.</span>
+                  <a mat-button (click)="unsetFeatured()">Remove Featured</a>
+                </div>
+                <span >{{ featuredprog.title }} is currently set as featured.</span> -->
+
+                  <div class="text-center">
+                    <button mat-raised-button data-toggle="collapse" data-target="#collapseable">Close</button>
+                    <button mat-raised-button type="submit">Create Program</button>
+                  </div>
+          </form>
+         </mat-card-content>
+      </mat-card>
+      </div>
+  </div>
+</div>
+
+<div class="row mt-3 card-row">
+  <div class="col-lg-12 featured-prog-div no-pad" *ngIf="featuredSet; else nofeatured">
+    <mat-card>
+      <mat-card-title>
+        <h4>{{ featuredprog.title }}</h4>
+      </mat-card-title>
+      <mat-card-content>
+        <p class="featured-description">{{ featuredprog.description }}</p>
+        <div class="divider-div" *ngIf="featuredPhotoResponse.matches"></div>
+        <div class="text-center" *ngIf="featuredPhotoResponse.matches"><h5>Featured Photo</h5></div>
+        <div class="text-center" *ngIf="featuredPhotoResponse.matches">
+            <img src="{{ featuredprog.featuredimg.url }}" *ngIf="featuredPhotoResponse.matches">
+        </div>
+        <div class="divider-div"></div>
+        <div class="text-center"><h5>Carousel Photos</h5></div>
+        <mat-grid-list [cols]="numOfCols" gutterSize="10px">
+          <mat-grid-tile *ngFor="let img of featuredprog.images">
+            <img src="{{ img.url }}" height="200px" width="200px">
+          </mat-grid-tile>
+        </mat-grid-list>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <ng-template #nofeatured>
+    <div class="col-lg-12 text-center">
+      <div class="divider-div"></div>
+      <h4>Featured Program Needs to be Set</h4>
+      <div class="divider-div"></div>
+    </div>
+  </ng-template>
+</div>
+<div class="row mt-2 card-row">
+    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 program-section flex" *ngFor="let prog of allProgs">
+        <div class="flex flex-image">
+            <img mat-card-img class="event-image" src="{{prog.images[0].url}}">
+        </div>
+        <div class="flex-content">
+
+               <!-- <div class="flex"> -->
+                    <h4 class="event-title new-h4">{{prog.title}}</h4>
+                    <h5 class="event-title new-h5 ">{{prog.category}}</h5>
+               <!-- </div> -->
+                <div class="button-wrap">
+                      <div class="text-center">
+                          <button mat-button color="" routerLink="program-edit/{{prog.$id}}">Edit</button>
+                          <button mat-button color="warn" value="{{ prog.$id }}" (click)="deleteProg($event)">Delete</button>
+                      </div>
+                </div>
+        </div>
+    </div>
+
+</div>
+   <!--  <mat-grid-list  [cols]="numOfCols" gutterSize="15px" class="mt-3">
+    <mat-grid-tile *ngFor="let prog of allProgs" class="mat-elevation-z3">
+      <mat-card class="mb-2">
+        <img mat-card-image src="{{ prog.images[0].url }}" >
+        <mat-card-content>
+          <h6>{{prog.title}}</h6>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-button color="primary" routerLink="program-edit/{{ prog.$id}}">Edit</button>
+            <button mat-button color="warn" value="{{ prog.$id }}" (click)="deleteProg($event)">Delete</button>
+        </mat-card-actions>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>% -->
+</div>
+

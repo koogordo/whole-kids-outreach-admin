@@ -1,0 +1,57 @@
+<div class="container width">
+  <div class="text-center">
+    <h1>Pre Test Survey</h1>
+    <h5 class="margin-bottom">Please complete before navigating away from this page</h5>
+  </div>
+  <form #questionnaire="ngForm" (ngSubmit)="onSubmit(questionnaire)">
+    <mat-form-field class="full-width">
+      <mat-placeholder>Age</mat-placeholder>
+      <mat-select [(value)]="age">
+          <mat-option value="18-24">18-24</mat-option>
+          <mat-option value="25-34">25-34</mat-option>
+          <mat-option value="35-44">35-44</mat-option>
+          <mat-option value="45-60">45-60</mat-option>
+          <mat-option value="Older than 60">Older than 60</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-placeholder>Occupation/Major</mat-placeholder>
+      <input
+        matInput
+        type="text"
+        name="occupation"
+        #newoccupation="ngModel"
+        [(ngModel)]="occupation"
+        required
+      >
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+        <mat-placeholder>Gender</mat-placeholder>
+        <input
+          matInput
+          type="text"
+          name="gender"
+          #newlname="ngModel"
+          [(ngModel)]="gender"
+          required
+        >
+      </mat-form-field>
+
+        <mat-form-field class="full-width margin-bottom">
+            <mat-placeholder>Computer Experiance</mat-placeholder>
+            <mat-select [(value)]="exp">
+              <mat-option value="1">Limited Experiance Beyond Email and Web Surfing</mat-option>
+              <mat-option value="2">Some experience with websites or applications</mat-option>
+              <mat-option value="3">Some formal Computer Science education</mat-option>
+              <mat-option value="4">Extensive Computer Experience</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <div class="text-center">
+            <button class="full-width" mat-raised-button type="submit">Submit</button>
+          </div>
+
+
+  </form>
+</div>

@@ -1,0 +1,18 @@
+<h3> Proceed with staff member Submission?</h3>
+<div class="container-fluid">
+  <div class="row">
+    <mat-list>
+      <mat-list-item>First Name: {{toConfirm.fname}}</mat-list-item>
+      <mat-list-item>Last Name: {{toConfirm.lname}}</mat-list-item>
+      <mat-list-item>Suffix: {{toConfirm.suffix ? toConfirm.suffix : 'No Suffix' }}</mat-list-item>
+      <mat-list-item>Position: {{toConfirm.position}}</mat-list-item>
+      <mat-list-item>Employer: {{toConfirm.staffEmail}}</mat-list-item>
+    </mat-list>
+  </div>
+  <div class="row">
+      <div class="text-center">
+          <button mat-raised-button (click)="closeDialogFalse()">Cancel</button>
+          <button mat-raised-button (click)="closeDialogTrue()">Confirm</button>
+        </div>
+  </div>
+</div>

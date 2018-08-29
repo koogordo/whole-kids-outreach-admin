@@ -1,0 +1,19 @@
+.selected-image {
+  height: 400px;
+  width: 400px;
+  background-size: cover;
+
+}
+
+.remove-chosen-image {
+  float: right;
+  margin: 2px;
+}
+
+.remove-chosen-image:hover {
+  cursor: pointer;
+}
+
+.attach-link-wrap {
+  display: inline-flex;
+}

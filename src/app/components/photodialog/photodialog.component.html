@@ -1,0 +1,14 @@
+<h2 mat-dialog-title>Choose Image</h2>
+    <mat-divider></mat-divider>
+
+      <mat-grid-list cols="2">
+          <mat-grid-tile *ngFor="let img of images" mat-dialog-close>
+            <button mat-button (click)="setImage($event)" value="{{ img.$id }}">
+                  <img class="library-image" src="{{ img.url }}" alt="">
+                </button>
+          </mat-grid-tile>
+      </mat-grid-list>
+    <mat-divider></mat-divider>
+
+
+

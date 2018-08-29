@@ -1,0 +1,123 @@
+<div class="container">
+  <div class="back-arrow-wrap mt-2">
+      <a mat-mini-fab class="mt-2" color="primary" routerLink="/events-form/"><mat-icon>arrow_back</mat-icon></a>
+  </div>
+
+    <mat-card class="mt-2">
+        <mat-card-content>
+          <form #editEventForm="ngForm" (ngSubmit)="onSubmit(editEventForm)" class="mt-2">
+                <mat-form-field class="full-width">
+                  <mat-placeholder>Title</mat-placeholder>
+                    <input matInput
+                    type="text"
+                    name="title"
+                    #newtitle="ngModel"
+                    [(ngModel)]="title"
+                    [ngClass]="{'is-invalid': newtitle.errors && newtitle.touched}"
+                    minlength="3"
+                    required
+                    maxlength="40"
+                  >
+                </mat-form-field> <br>
+
+
+                  <mat-form-field>
+                    <mat-placeholder>Start Date</mat-placeholder>
+                    <input matInput
+                    type="date"
+                    name="start"
+                    #newstart="ngModel"
+                    [(ngModel)]="start"
+                    [ngClass]="{'is-invalid': newstart.errors && newstart.touched}"
+                    minlength="3"
+                    required
+                 >
+
+                  </mat-form-field>
+
+                  <mat-form-field>
+                    <mat-placeholder> End Date</mat-placeholder>
+                    <input matInput
+                    type="date"
+                    name="end"
+                    #newend="ngModel"
+                    [(ngModel)]="end"
+                    [ngClass]="{'is-invalid': newend.errors && newend.touched}"
+                    minlength="3"
+                    required
+                 >
+                  </mat-form-field> <br>
+
+                  <mat-form-field class="full-width">
+                    <mat-placeholder>Tagline</mat-placeholder>
+                    <input matInput
+                    type="text"
+                    name="tagline"
+                    #newtag="ngModel"
+                    [(ngModel)]="tagline"
+                    required
+                    maxlength="75"
+                 >
+                 <mat-hint>Breif description to be displayed on homepage</mat-hint>
+                  </mat-form-field><br>
+
+                  <mat-form-field class="full-width">
+                    <mat-placeholder>Description</mat-placeholder>
+                    <textarea matInput
+                      #newdescription="ngModel"
+                      [(ngModel)]="description"
+                      name="description"
+                      [ngClass]="{'is-invalid': newdescription.errors && newdescription.touched}"
+                      minlength="3"
+                      required
+                    ></textarea>
+                 <div [hidden]="!newdescription.errors?.required" class="invalid-feedback">
+                    Description is required.
+                  </div>
+                  <div [hidden]="!newdescription.errors?.minlength" class="invalid-feedback">
+                      Title must have a minimum of three characters.
+                  </div>
+                  </mat-form-field>
+
+
+                      <!-- <a mat-button >Choose Existing</a>
+                      <a mat-button (click)="uploadSelected = !uploadSelected">Upload</a>
+                      <input *ngIf="uploadSelected" type="file" (change)="setUploadTarget($event)" > -->
+                      <div *ngIf="hasImage; else addImage" class="selected-image mt-2" [ngStyle]="{ 'background-image': 'url(' + image.url + ')' }">
+                        <mat-icon (click)="removeImage()" color="accent" class="remove-chosen-image">cancel</mat-icon>
+                      </div>
+                      <ng-template #addImage>
+                        <a mat-button (click)="selectImage()" > Add Image </a>
+                      </ng-template>
+
+                      <div class="container mt-3" *ngIf="attaches">
+                        <div class="row">
+                          <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" *ngFor="let attach of attaches">
+                            <div class="attach-link-wrap">
+                                <a mat-button href="{{attach.url}}" target="_blank">{{attach.name}} <mat-icon>attachment</mat-icon> </a>
+                                <mat-icon (click)="removeAttach($event)" color="accent" class="remove-chosen-image">cancel</mat-icon>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="container mt-2">
+                          <div class="row">
+                              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div>
+                                    New Attachments: <input type="file" (change)="uploadAttachment($event)" multiple>
+                                </div>
+                              </div>
+                            </div>
+                      </div>
+
+                      <!-- <img *ngIf="usingExistingImage " [src]="chosenExistingImage.url" alt="Image" height="200px" width="200px"> -->
+                      <!-- <a mat-button *ngIf="usingExistingImage"  color="warn" click="resetSelectedImg()"></a> -->
+                  <div class="text-center mt-3">
+                    <button mat-raised-button class="full-width" type="submit">Submit Changes</button>
+                  </div>
+            </form>
+          </mat-card-content>
+      </mat-card>
+
+</div>
+

@@ -1,0 +1,142 @@
+<mat-toolbar color="accent" class="page-header mat-elevation-z1">
+  <h3 class="header-title ml-3">Events</h3>
+</mat-toolbar>
+<div class="container mt-2 center">
+
+    <div class="row mt-2">
+        <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+          <button mat-raised-button  data-toggle="collapse" data-target="#collapseable" >Add Event<mat-icon>add</mat-icon> </button>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10">
+            <div class="collapse" id="collapseable">
+                <mat-card>
+                      <mat-card-title>
+                        Create Event
+                      </mat-card-title>
+                      <mat-card-content>
+                        <form #newEventForm="ngForm" (ngSubmit)="confirmSubmission(newEventForm)" class="mt-2">
+                              <mat-form-field class="full-width">
+                                <mat-placeholder>Title</mat-placeholder>
+                                  <input matInput
+                                  type="text"
+                                  name="title"
+                                  #newtitle="ngModel"
+                                  [(ngModel)]="title"
+                                  required
+                                  maxlength="40"
+                                >
+                              </mat-form-field> <br>
+
+
+                                <mat-form-field class="full-width">
+                                  <mat-placeholder>Start Date</mat-placeholder>
+                                  <input matInput
+                                  type="date"
+                                  name="start"
+                                  #newstart="ngModel"
+                                  [(ngModel)]="start"
+                                  required
+                               >
+
+                                </mat-form-field>
+
+                                <mat-form-field class="full-width">
+                                  <mat-placeholder> End Date</mat-placeholder>
+                                  <input matInput
+                                  type="date"
+                                  name="end"
+                                  #newend="ngModel"
+                                  [(ngModel)]="end"
+                                  required
+                               >
+                                </mat-form-field> <br>
+
+                                <mat-form-field class="full-width">
+                                    <mat-placeholder>Tagline</mat-placeholder>
+                                    <input matInput
+                                    type="text"
+                                    name="tagline"
+                                    #newend="ngModel"
+                                    [(ngModel)]="tagline"
+                                    required
+                                    maxlength="75"
+                                 >
+                                 <mat-hint>Breif description to be displayed on homepage</mat-hint>
+                                  </mat-form-field> <br>
+
+                                <mat-form-field class="full-width">
+                                  <mat-placeholder>Description</mat-placeholder>
+                                  <textarea matInput
+                                    #newdescription="ngModel"
+                                    [(ngModel)]="description"
+                                    name="description"
+                                    required
+                                  ></textarea>
+                                  <mat-hint>In depth details to be displayed on learn more</mat-hint>
+                                </mat-form-field>
+
+                                <div class="add-photo-container" class="mt-2">
+                                  <label for="photos">Add Photo:</label>
+                                    <a mat-button (click)="selectPhoto()">Choose Existing</a>
+                                    <a mat-button (click)="uploadSelected = !uploadSelected">Upload</a>
+                                    <input *ngIf="uploadSelected" type="file" (change)="setUploadTarget($event)" >
+
+                                    <div class="selected-image mt-2" *ngIf="usingExistingImage" [ngStyle]="{ 'background-image': 'url(' + chosenExistingImage.url + ')' }">
+                                      <mat-icon color="primary" class="remove-chosen-image" (click)="resetSelectedImg()" >cancel</mat-icon>
+                                    </div>
+                                </div> <br>
+
+                                <div class="add-attach-container">
+                                  <label for="attachments">Add Attachments:</label>
+                                    <input type="file" (change)="setUploadAttachments($event)" multiple>
+                                </div>
+
+                                <div class="text-center mt-3">
+                                  <button mat-raised-button  data-toggle="collapse" data-target="#collapseable">Close</button>
+                                  <button mat-raised-button  type="submit">Create Event</button>
+                                </div>
+
+                          </form>
+                        </mat-card-content>
+                  </mat-card>
+
+        </div>
+      </div>
+  </div>
+  <div class="row card-row">
+    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 card-section flex" *ngFor="let event of events">
+      <div class="flex flex-image">
+          <img mat-card-img class="event-image" src="{{event.image.url}}">
+      </div>
+      <div class="flex-content">
+
+             <!-- <div class="flex"> -->
+                  <h4 class="event-title new-h4">{{event.title}}</h4>
+                  <h5 class="event-title new-h5 ">{{event.tagline}}</h5>
+                  <h6 class="date-label new-h6">{{event.start | date}}-{{event.end | date}}</h6>
+             <!-- </div> -->
+              <div class="button-wrap">
+                    <div class="text-center">
+                        <button mat-button color="" routerLink="event-edit/{{event.id}}">Edit</button>
+                        <button mat-button color="warn" value="{{ event.id }}" (click)="deleteEvent($event)">Delete</button>
+                    </div>
+              </div>
+      </div>
+  </div>
+  </div>
+      <!--  <mat-grid-list [cols]="gridResponse.matches ? 3 : 1" gutterSize="15px" class="mt-3">
+        <mat-grid-tile *ngFor="let event of events" class="mat-elevation-z3">
+          <mat-card class="mb-2">
+            <img mat-card-image src="{{ event.image.url }}" >
+            <mat-card-content>
+              <h6>{{event.title}}</h6>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-button color="primary" routerLink="event-edit/{{ event.id}}">Edit</button>
+                <button mat-button color="warn" value="{{ event.id }}" (click)="deleteEvent($event)">Delete</button>
+            </mat-card-actions>
+          </mat-card>
+        </mat-grid-tile>
+      </mat-grid-list> -->
+</div>
+

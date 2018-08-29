@@ -1,0 +1,26 @@
+<mat-toolbar color="accent" class="mat-elevation-z1">
+  <h3 class="header-title ml-3">Photo Library</h3>
+</mat-toolbar>
+<div class="container mt-3">
+    <mat-grid-list [cols]="numOfCols" *ngIf="images.length > 0">
+        <mat-grid-tile *ngFor="let img of images">
+            <mat-grid-tile-header>
+                <mat-checkbox (change)="toggleSelected($event)" value="{{ img.$id }}" name="{{ img.name }}"> </mat-checkbox>
+              </mat-grid-tile-header>
+                <img *ngIf="!pdfTest.test(img.name); else embedTemplate" class="library-image" src="{{ img.url }}" alt="">
+                <ng-template #embedTemplate>
+                  <embed [src]="img.url | safe" type="application/pdf">
+                </ng-template>
+                <mat-grid-tile-footer> {{ img.name }} <br> {{ img.createdAt | date }} </mat-grid-tile-footer>
+        </mat-grid-tile>
+    </mat-grid-list>
+<div class="divider-div"></div>
+  <label class="file-label">
+    <input type="file" (change)="detectFiles($event)" class="file-input" multiple>
+  </label>
+  <button mat-raised-button (click)="upload()" [disabled]="!isFiles">Upload</button>
+  <button mat-raised-button (click)="initDelete()" [disabled]="!isSelected">Delete</button>
+</div>
+
+
+

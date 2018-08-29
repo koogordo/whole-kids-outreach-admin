@@ -1,0 +1,46 @@
+<h3> Proceed with event Submission?</h3>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-12">
+        <mat-list>
+            <mat-list-item>Title: {{toConfirm.title}}</mat-list-item>
+            <mat-list-item>Category: {{toConfirm.category}}</mat-list-item>
+            <mat-list-item>Tagline: {{toConfirm.tagline}}</mat-list-item>
+            <mat-list-item>When: {{toConfirm.when}}</mat-list-item>
+            <mat-list-item>For Who: {{toConfirm.forwho}}</mat-list-item>
+            <mat-list-item>How tto Register: {{toConfirm.howtoreg}}</mat-list-item>
+            <mat-list-item>Featured Image: {{toConfirm.featuredimg.name}}</mat-list-item>
+            <mat-list-item>Featured: {{ toConfirm.featured ? 'Yes' : 'No' }}</mat-list-item>
+        </mat-list>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+          <h6>Carousel Photos</h6>
+      </div>
+      <div class="col-lg-12">
+              <mat-list>
+                <mat-list-item *ngFor="let img of toConfirm.images">{{img.name}}</mat-list-item>
+              </mat-list>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+         Description:
+         <p>{{toConfirm.description}}</p>
+      </div>
+    </div>
+    <div class="row mb">
+      <div class="col-lg-12">
+          <div class="text-center">
+              <button mat-raised-button (click)="closeDialogFalse()">Cancel</button>
+              <button mat-raised-button (click)="closeDialogTrue()">Confirm</button>
+            </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+

@@ -1,0 +1,42 @@
+<h3> Proceed with event Submission?</h3>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-12">
+        <mat-list>
+            <mat-list-item>Title: {{toConfirm.title}}</mat-list-item>
+            <mat-list-item>Start Date: {{toConfirm.start}}</mat-list-item>
+            <mat-list-item>End Date: {{toConfirm.start}}</mat-list-item>
+            <mat-list-item>Tagline: {{toConfirm.tagline}}</mat-list-item>
+            <mat-list-item>Image: {{toConfirm.image.name}}</mat-list-item>
+        </mat-list>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+          <div class="attaches" *ngIf="toConfirm.attachments.length > 0">
+              <mat-list>
+                <mat-list-item *ngFor="let attach of toConfirm.attachments">{{attach.name}}</mat-list-item>
+              </mat-list>
+            </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+         Description:
+         <p>{{toConfirm.description}}</p>
+      </div>
+    </div>
+    <div class="row mb">
+      <div class="col-lg-12">
+          <div class="text-center">
+              <button mat-raised-button (click)="closeDialogFalse()">Cancel</button>
+              <button mat-raised-button (click)="closeDialogTrue()">Confirm</button>
+            </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+

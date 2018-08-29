@@ -1,0 +1,101 @@
+<mat-toolbar color="accent" class="page-header mat-elevation-z1">
+  <h3 class="header-title ml-3">Staff Members</h3>
+</mat-toolbar>
+
+<div class="container">
+<div class="row">
+  <div class="col-sm-12 col-xs-12 col-md-2 col-lg-2 mt-2">
+    <button mat-raised-button data-toggle="collapse" data-target="#collapseable">Add Staff Member<mat-icon>add</mat-icon></button>
+  </div>
+  <div class="col-sm-12 col-xs-12 col-md-10 col-lg-10 mt-2" >
+      <div class="collapse" id="collapseable">
+      <mat-card>
+        <mat-card-title>
+          <h4>New Staff Member</h4>
+        </mat-card-title>
+        <mat-card-content>
+          <form #staffForm="ngForm" (ngSubmit)="submitNewStaff(staffForm)">
+            <mat-form-field class="full-width">
+              <mat-placeholder>First Name</mat-placeholder>
+              <input
+                matInput
+                type="text"
+                name="fname"
+                [(ngModel)]="fname"
+                #newfname="ngModel"
+                required
+              >
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <mat-placeholder>Last Name</mat-placeholder>
+                <input
+                  matInput
+                  type="text"
+                  name="lname"
+                  #newlname="ngModel"
+                  [(ngModel)]="lname"
+                  required
+                >
+              </mat-form-field>
+
+              <mat-form-field class="full-width">
+                <mat-placeholder>Suffix</mat-placeholder>
+                <input
+                  matInput
+                  type="text"
+                  name="suffix"
+                  #newlname="ngModel"
+                  [(ngModel)]="suffix"
+                >
+              </mat-form-field>
+
+              <mat-form-field class="full-width">
+                  <mat-placeholder>Position in Organization</mat-placeholder>
+                  <mat-select [(value)]="staffPosition">
+                    <mat-option *ngFor="let slot of staffSlots" value="{{slot}}">{{posOnStaff[slot]}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="full-width">
+                    <mat-placeholder>Email</mat-placeholder>
+                    <input
+                      matInput
+                      type="email"
+                      name="staffEmail"
+                      #newoccupation="ngModel"
+                      [(ngModel)]="staffEmail"
+                      required
+                    >
+                  </mat-form-field>
+                  <div class="text-center">
+                    <button mat-raised-button data-toggle="collapse" data-target="#collapseable">Close</button>
+                    <button mat-raised-button type="submit">Create Staff</button>
+                  </div>
+
+          </form>
+        </mat-card-content>
+      </mat-card>
+      </div>
+  </div>
+</div>
+
+<div class="row mt-3 card-row">
+  <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3" *ngFor="let member of staff">
+      <mat-card>
+          <mat-card-content>
+            <h3>{{ member.fname }} {{ member.lname}}, {{member.suffix}}</h3>
+            <p>
+              {{ posOnStaff[member.position] }}
+              <br>
+              {{ member.staffEmail }}
+              <br>
+            </p>
+          </mat-card-content>
+          <mat-card-actions>
+            <button color="primary" mat-button routerLink="staff-edit/{{member.id}}">Edit</button>
+            <button mat-button color="warn" value="{{ member.id }}" (click)="deleteStaffMember($event)">Delete</button>
+          </mat-card-actions>
+        </mat-card>
+  </div>
+</div>
+</div>

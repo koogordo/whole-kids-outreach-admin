@@ -1,0 +1,22 @@
+.selected-image {
+  height: 150px;
+  width: 150px;
+  background-size: cover;
+}
+
+.remove-chosen-image {
+  float: right;
+  margin: 2px;
+}
+
+.remove-chosen-image:hover {
+  cursor: pointer;
+}
+
+.divider-div {
+  width: 100%;
+  height: 10px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  background-color: rgb(93, 207, 233);
+}

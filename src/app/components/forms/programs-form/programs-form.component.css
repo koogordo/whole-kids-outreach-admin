@@ -1,0 +1,36 @@
+
+.selected-image {
+  height: 200px;
+  width: 200px;
+  background-size: cover;
+}
+
+.remove-chosen-image {
+  float: right;
+  margin: 2px;
+}
+
+.remove-chosen-image:hover {
+  cursor: pointer;
+}
+
+.featured-prog-div {
+  width: 300px;
+}
+
+.program-section {
+  border: solid 1px rgba(60,60,60,.3);
+  height: 320px !important;
+  margin-top: 10px;
+  border-radius: 2px;
+  margin-left: 5px;
+  margin-right: 5px;
+  padding: 0px !important;
+  display: flex;
+  flex-direction: column;
+  max-width: 300px !important;
+  width: 300px;
+}
+
+
+
